@@ -329,13 +329,13 @@ RuntimeException: Controller "Drupal\event_management\Controller\EventController
      5. Configuration: Change the configuration settings and check that they are applied correctly.
      6. Block Placement: Place the latest events block and check its content.
   # Checklist: 
-     1. [x] Module is enabled without errors.
-     2. [x] Database tables are created and contain the expected schema.
-     3. [x] Configuration form loads and saves settings.
-     4. [x] Events can be created, read, updated, and deleted.
-     5. [x] Event listing and detail pages display correct information.
-     6. [x] Latest events block displays correct data.
-     7. [x] Logs are being created in event_management_log table when configuration changes are made.
+  1. [x] Module is enabled without errors.
+  2. [x] Database tables are created and contain the expected schema.
+  3. [x] Configuration form loads and saves settings.
+  4. [x] Events can be created, read, updated, and deleted.
+  5. [x] Event listing and detail pages display correct information.
+  6. [x] Latest events block displays correct data.
+  7. [x] Logs are being created in event_management_log table when configuration changes are made.
 
 ## end check implement
 #  It's a good practice to add project to version control (e.g., Git) and ignore the vendor and web/core directories.
