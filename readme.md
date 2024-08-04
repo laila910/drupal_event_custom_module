@@ -89,7 +89,7 @@
                   ServerName drupalevent.local
                   DocumentRoot "C:/wamp64/www/drupal_event/web"
 
-               <Directory "C:/wamp64/www/drupal_event/web">
+               <Directory "C:/wamp64/www/drupal_event/web/">
                   Options Indexes FollowSymLinks
                   AllowOverride All
                   Require all granted
@@ -234,7 +234,55 @@
  25. add custom error page ... add the error page routing and create error controller
 
 
+# errors detected and solved checked when try to install and test my module: 
+   1. [x] Trusted Host Settings: Not enabled
+      The trusted_host_patterns setting is not configured in settings.php. This can lead to security vulnerabilities. It is highly 
+         recommended that you configure this. See Protecting against HTTP HOST Header attacks for more information.
+   2. [x] Critical security announcements
+      Failed to fetch security advisory data:
+         See Troubleshooting the advisory feed for possible causes and resolutions.
+         Check your local system logs for additional error messages. 
+   3. [x] GuzzleHttp\Exception\RequestException: cURL error 60: SSL certificate problem: unable to get local issuer certificate (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for https://updates.drupal.org/release-history/drupal/current?site_key=x78XkSXT6LVfniwbZtUbaMzjD7EkGAgzT5O_Uj7u1Ds&version=10.0.0&list=automated_cron%2Cbig_pipe%2Cblock%2Cblock_content%2Cbreakpoint%2Cckeditor5%2Ccomment%2Cconfig%2Ccontact%2Ccontextual%2Cdatetime%2Cdblog%2Cdynamic_page_cache%2Ceditor%2Cfield%2Cfield_ui%2Cfile%2Cfilter%2Chelp%2Chistory%2Cimage%2Clink%2Cmenu_link_content%2Cmenu_ui%2Cmysql%2Cnode%2Coptions%2Cpage_cache%2Cpath%2Cpath_alias%2Csearch%2Cshortcut%2Csystem%2Ctaxonomy%2Ctext%2Ctoolbar%2Ctour%2Cupdate%2Cuser%2Cviews%2Cviews_ui in GuzzleHttp\Handler\CurlFactory::createRejection() (line 211 of C:\wamp64\www\drupal_event\vendor\guzzlehttp\guzzle\src\Handler\CurlFactory.php).
+   4. [x] Database Isolation Level
+         REPEATABLE-READ
+           For the best performance and to minimize locking issues, the READ-COMMITTED transaction isolation level is recommended. 
+            See the setting MySQL transaction isolation level page for more information.
+   5. [x] Drupal core update status
+            Failed to get available update data.
+           There was a problem checking available updates for Drupal.
+   6. [x] The website encountered an unexpected error. Please try again later.
+         Error: Interface "Drupal\Core\EventSubscriber\EventSubscriberInterface" not found in include() (line 10 of 
+            modules\custom\event_management\src\EventSubscriber\EventSubscriber.php).
+   7. [x] Fatal error: Declaration of Drupal\event_management\Form\EventForm::save(array &$form, Drupal\Core\Form\FormStateInterface $form_state) must be compatible with Drupal\Core\Entity\EntityForm::save(array $form, Drupal\Core\Form\FormStateInterface $form_state) in C:\wamp64\www\drupal_event\web\modules\custom\event_management\src\Form\EventForm.php on line 108
+   8. [x] ![Status message Module Event Management has been enabled.](readmeImages/image3.png "Module Event Management enabled but get error") success in enabled but get `Error message`as below:
+       * User error: "html" is an invalid render array key in Drupal\Core\Render\Element::children() (line 98 of 
+          core\lib\Drupal\Core\Render\Element.php).
+       * User error: "html" is an invalid render array key in Drupal\Core\Render\Element::children() (line 98 of 
+          core\lib\Drupal\Core\Render\Element.php).
+          ............. solved as: ![Successfully Status message Module Event Management has been enabled.](readmeImages/image4.png "Module Event Management is enabled without any error with it") 
+          ............. solved uninstall and install successfully as in: ![Uninstall Module and InStall it without any errors](readmeImages/image5.png "Module Event Management is Uninstall and install without any errors in log")
+          ............. solved as: ![Successfully create event and event_management_log](readmeImages/image6.png "Module Event Management enabled and two tables event and event_management_log tables has been created successfully when install module from extend")
+          ............. solved as: ![successfully get Configuration Page by route as shown](readmeImages/image7.png "Module Event Management Configuration Page Successfully Rendered")
+          ............. solved as: ![configured configraration as in this image](readmeImages/image8.png "Module Event Management Configuration Page configured as here") ...........
+   9. [x] after save configraration Setting in Page get an error as blow: 
+   The website encountered an unexpected error. Please try again later.
 
+Drupal\Core\Database\DatabaseExceptionWrapper: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'message' in 'field list': INSERT INTO "event_management_log" ("message", "timestamp") VALUES (:db_insert_placeholder_0, :db_insert_placeholder_1); Array ( [:db_insert_placeholder_0] => Drupal\Core\StringTranslation\TranslatableMarkup Object ( [string:protected] => Configuration settings updated. [arguments:protected] => Array ( ) [translatedMarkup:protected] => Configuration settings updated. [options:protected] => Array ( ) [stringTranslation:protected] => Drupal\Core\StringTranslation\TranslationManager Object ( [translators:protected] => Array ( [30] => Array ( [0] => Drupal\Core\StringTranslation\Translator\CustomStrings Object ( [translations:protected] => Array ( [en] => Array ( ) ) [settings:protected] => Drupal\Core\Site\Settings Object ( [storage:Drupal\Core\Site\Settings:private] => Array ( [hash_salt] => H2bx5L2UT0CeKT7egWRt2wXR3pBElZkK0-9nuwtyVwITEMZlbExGoZwxlPwWoOr_eEteB3SWCA [update_free_access] => [container_yamls] => Array ( [0] => C:\wamp64\www\drupal_event\web/sites/default/services.yml ) [trusted_host_patterns] => Array ( [0] => ^drupalevent\.local$ ) [file_scan_ignore_directories] => Array ( [0] => node_modules [1] => bower_components ) [entity_update_batch_size] => 50 [entity_update_backup] => 1 [migrate_node_migrate_type_classic] => [config_sync_directory] => sites/default/files/config_-ZJV5yrXV6mPCSupD1Cc2Nu7nDJZDVxQSxGn7hY1T7FsSLgoMqIHZEwMZsvbyua15IpPLX4jZA/sync [http_client_config] => Array ( [proxy] => Array ( [http] => http://drupalevent.local:8080 [https] => http://drupalevent.local:8080 [no] => Array ( [0] => 127.0.0.1 [1] => localhost ) ) ) ) ) [_serviceIds:protected] => Array ( ) [_entityStorages:protected] => Array ( ) ) ) ) [sortedTranslators:protected] => Array ( [0] => Drupal\Core\StringTranslation\Translator\CustomStrings Object ( [translations:protected] => Array ( [en] => Array ( ) ) [settings:protected] => Drupal\Core\Site\Settings Object ( [storage:Drupal\Core\Site\Settings:private] => Array ( [hash_salt] => H2bx5L2UT0CeKT7egWRt2wXR3pBElZkK0-9nuwtyVwITEMZlbExGoZwxlPwWoOr_eEteB3SWCA [update_free_access] => [container_yamls] => Array ( [0] => C:\wamp64\www\drupal_event\web/sites/default/services.yml ) [trusted_host_patterns] => Array ( [0] => ^drupalevent\.local$ ) [file_scan_ignore_directories] => Array ( [0] => node_modules [1] => bower_components ) [entity_update_batch_size] => 50 [entity_update_backup] => 1 [migrate_node_migrate_type_classic] => [config_sync_directory] => sites/default/files/config_-ZJV5yrXV6mPCSupD1Cc2Nu7nDJZDVxQSxGn7hY1T7FsSLgoMqIHZEwMZsvbyua15IpPLX4jZA/sync [http_client_config] => Array ( [proxy] => Array ( [http] => http://drupalevent.local:8080 [https] => http://drupalevent.local:8080 [no] => Array ( [0] => 127.0.0.1 [1] => localhost ) ) ) ) ) [_serviceIds:protected] => Array ( ) [_entityStorages:protected] => Array ( ) ) ) [defaultLangcode:protected] => en ) ) [:db_insert_placeholder_1] => 1722724219 ) in Drupal\event_management\Form\SettingsForm->submitForm() (line 125 of modules\custom\event_management\src\Form\SettingsForm.php). 
+  10. [x] error when saved Configuration as in below: 
+  The website encountered an unexpected error. Please try again later.
+
+Drupal\Core\Database\IntegrityConstraintViolationException: SQLSTATE[HY000]: General error: 1364 Field 'user' doesn't have a default value: INSERT INTO "event_management_log" ("operation", "details", "timestamp") VALUES (:db_insert_placeholder_0, :db_insert_placeholder_1, :db_insert_placeholder_2); Array ( [:db_insert_placeholder_0] => Configuration Update or Create [:db_insert_placeholder_1] => Drupal\Core\StringTranslation\TranslatableMarkup Object ( [string:protected] => Configuration settings updated. [arguments:protected] => Array ( ) [translatedMarkup:protected] => Configuration settings updated. [options:protected] => Array ( ) [stringTranslation:protected] => Drupal\Core\StringTranslation\TranslationManager Object ( [translators:protected] => Array ( [30] => Array ( [0] => Drupal\Core\StringTranslation\Translator\CustomStrings Object ( [translations:protected] => Array ( [en] => Array ( ) ) [settings:protected] => Drupal\Core\Site\Settings Object ( [storage:Drupal\Core\Site\Settings:private] => Array ( [hash_salt] => H2bx5L2UT0CeKT7egWRt2wXR3pBElZkK0-9nuwtyVwITEMZlbExGoZwxlPwWoOr_eEteB3SWCA [update_free_access] => [container_yamls] => Array ( [0] => C:\wamp64\www\drupal_event\web/sites/default/services.yml ) [trusted_host_patterns] => Array ( [0] => ^drupalevent\.local$ ) [file_scan_ignore_directories] => Array ( [0] => node_modules [1] => bower_components ) [entity_update_batch_size] => 50 [entity_update_backup] => 1 [migrate_node_migrate_type_classic] => [config_sync_directory] => sites/default/files/config_-ZJV5yrXV6mPCSupD1Cc2Nu7nDJZDVxQSxGn7hY1T7FsSLgoMqIHZEwMZsvbyua15IpPLX4jZA/sync [http_client_config] => Array ( [proxy] => Array ( [http] => http://drupalevent.local:8080 [https] => http://drupalevent.local:8080 [no] => Array ( [0] => 127.0.0.1 [1] => localhost ) ) ) ) ) [_serviceIds:protected] => Array ( ) [_entityStorages:protected] => Array ( ) ) ) ) [sortedTranslators:protected] => Array ( [0] => Drupal\Core\StringTranslation\Translator\CustomStrings Object ( [translations:protected] => Array ( [en] => Array ( ) ) [settings:protected] => Drupal\Core\Site\Settings Object ( [storage:Drupal\Core\Site\Settings:private] => Array ( [hash_salt] => H2bx5L2UT0CeKT7egWRt2wXR3pBElZkK0-9nuwtyVwITEMZlbExGoZwxlPwWoOr_eEteB3SWCA [update_free_access] => [container_yamls] => Array ( [0] => C:\wamp64\www\drupal_event\web/sites/default/services.yml ) [trusted_host_patterns] => Array ( [0] => ^drupalevent\.local$ ) [file_scan_ignore_directories] => Array ( [0] => node_modules [1] => bower_components ) [entity_update_batch_size] => 50 [entity_update_backup] => 1 [migrate_node_migrate_type_classic] => [config_sync_directory] => sites/default/files/config_-ZJV5yrXV6mPCSupD1Cc2Nu7nDJZDVxQSxGn7hY1T7FsSLgoMqIHZEwMZsvbyua15IpPLX4jZA/sync [http_client_config] => Array ( [proxy] => Array ( [http] => http://drupalevent.local:8080 [https] => http://drupalevent.local:8080 [no] => Array ( [0] => 127.0.0.1 [1] => localhost ) ) ) ) ) [_serviceIds:protected] => Array ( ) [_entityStorages:protected] => Array ( ) ) ) [defaultLangcode:protected] => en ) ) [:db_insert_placeholder_2] => 1722724582 ) in Drupal\mysql\Driver\Database\mysql\ExceptionHandler->handleExecutionException() (line 43 of core\modules\mysql\src\Driver\Database\mysql\ExceptionHandler.php).
+   11. [x] Solved after save configraration setting in configuration page as in ![Status message The configuration options have been saved.](readmeImages/image9.png "Configuration options saved successfully")
+   12. [x] when try to run route `http://drupalevent.local/admin/events/add` ..Get Error directly as below: 
+      The website encountered an unexpected error. Please try again later.
+      Error: Call to a member function getEntityTypeId() on null in Drupal\Core\Entity\EntityForm->getBaseFormId() (line 68 of 
+         core\lib\Drupal\Core\Entity\EntityForm.php).
+   13. [x] successfully get the event List as in Image ![Event List](readmeImages/image10.png "Event List Successfully rendered as shown")
+   14. [] when try to create event by `` i get this error as below:
+     The website encountered an unexpected error. Please try again later.
+
+RuntimeException: Controller "Drupal\event_management\Controller\EventController::viewEvent()" requires that you provide a value for the "$event_id" argument. Either the argument is nullable and no null value has been provided, no default value has been provided or because there is a non optional argument after this one. in Symfony\Component\HttpKernel\Controller\ArgumentResolver->getArguments() (line 81 of C:\wamp64\www\drupal_event\vendor\symfony\http-kernel\Controller\ArgumentResolver.php).
+                      
 ## To Insure Event Custom Module is correctly implemented 
   # Step-by-Step Verification
   1. Enable the Module: 
@@ -283,14 +331,13 @@
   # Checklist: 
      * [x] Module is enabled without errors.
      * [x] Database tables are created and contain the expected schema.
-     * [x] Configuration form loads and saves settings.
-     * [x] Events can be created, read, updated, and deleted.
-     * [x] Event listing and detail pages display correct information.
-     * [x] Latest events block displays correct data.
-     * [x] Logs are being created in event_management_log table when configuration changes are made.
+     * [] Configuration form loads and saves settings.
+     * [] Events can be created, read, updated, and deleted.
+     * [] Event listing and detail pages display correct information.
+     * [] Latest events block displays correct data.
+     * [] Logs are being created in event_management_log table when configuration changes are made.
 
 ## end check implement
-
 #  It's a good practice to add project to version control (e.g., Git) and ignore the vendor and web/core directories.
 
 ## install the proper steps: 
