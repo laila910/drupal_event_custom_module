@@ -1,0 +1,10 @@
+<h1>{{ 'Events'|t }}</h1>
+<ul>
+  {% for event in events %}
+    <li>
+      <a href="{{ path('event_management.event_view', {'event': event.id}) }}">{{ event.title }}</a>
+      <div>{{ event.start_time }} - {{ event.end_time }}</div>
+      <div>{{ event.description }}</div>
+    </li>
+  {% endfor %}
+</ul>

@@ -1,0 +1,78 @@
+event_management.settings:
+  path: '/admin/config/event-management'
+  defaults:
+    _form: '\Drupal\event_management\Form\SettingsForm'
+    _title: 'Event Management Settings'
+  requirements:
+    _permission: 'administer site configuration'
+
+event_management.event_create:
+  path: '/admin/events/create'
+  defaults:
+    _form: '\Drupal\event_management\Form\EventForm'
+    _title: 'Create Event'
+  requirements:
+    _permission: 'administer site configuration'
+   # _entity_form: 'event.add'
+
+event_management.event_list:
+  path: '/admin/events/list'
+  defaults:
+    _controller: '\Drupal\event_management\Controller\EventController::listEvents'
+    _title: 'Event List'
+  requirements:
+    _permission: 'administer site configuration'
+
+event_management.event_view:
+  path: '/admin/events/{event}'
+  defaults:
+    _controller: '\Drupal\event_management\Controller\EventController::viewEvent'
+    _title: 'Event View'
+  requirements:
+    _permission: 'administer site configuration'
+    event: \d+
+
+
+event_management.event_edit:
+  path: '/admin/events/{event}/edit'
+  defaults:
+    _form: '\Drupal\event_management\Form\EventForm'
+    _title: 'Edit Event'
+  requirements:
+    _permission: 'administer site configuration'
+    event: \d+
+
+
+event_management.event_delete:
+  path: '/admin/events/{event}/delete'
+  defaults:
+    _form: '\Drupal\event_management\Form\EventDeleteForm'
+    _title: 'Delete Event'
+  requirements:
+    _permission: 'administer site configuration'
+    event: \d+
+    _entity_form: 'event.delete'
+
+event_management.help:
+  path: '/admin/help/event-management'
+  defaults:
+    _controller: '\Drupal\event_management\Controller\HelpController::help'
+    _title: 'Event Management Help'
+  requirements:
+    _permission: 'administer site configuration'
+
+event_management.custom_404:
+  path: '/custom-404'
+  defaults:
+    _controller: '\Drupal\event_management\Controller\ErrorController::custom404'
+    _title: 'Page Not Found'
+  requirements:
+    _permission: 'access content'
+
+event_management.custom_403:
+  path: '/custom-403'
+  defaults:
+    _controller: '\Drupal\event_management\Controller\ErrorController::custom403'
+    _title: 'Access Denied'
+  requirements:
+    _permission: 'access content'

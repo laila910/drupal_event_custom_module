@@ -1,0 +1,151 @@
+<?php
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Url;
+use Drupal\Core\Link;
+use Drupal\Core\Form\FormStateInterface;
+/**
+ * Implements hook_entity_type_build().
+ */
+function event_management_entity_type_build(array &$entity_types) {
+  if (isset($entity_types['event'])) {
+    $entity_types['event']->setFormClass('default', 'Drupal\event_management\Form\EventForm');
+  }
+}
+
+/**
+ * Implements hook_route_alter().
+ */
+function event_management_route_alter(array &$routes) {
+  if (isset($routes['event_management.event_create'])) {
+    // Example: Change permissions or defaults.
+    $routes['event_management.event_create']->setRequirement('permission', 'administer site configuration');
+  }
+}
+
+function event_management_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if ($form_id === 'event_form') {
+    // Example: Add a custom submit handler.
+    $form['#submit'][] = 'event_management_custom_submit_handler';
+    $form['#validate'][] = 'event_management_custom_validation';
+
+  }
+
+}
+
+/**
+ * Custom submit handler for event form.
+ */
+function event_management_custom_submit_handler(array &$form, FormStateInterface $form_state) {
+  // Custom logic here.
+}
+
+/**
+ * Implements hook_toolbar().
+ */
+function event_management_toolbar() {
+  $items = [];
+
+  // Define the configuration URL.
+  $url = Url::fromRoute('event_management.settings');
+  $link = Link::fromTextAndUrl(t('Event Management Settings'), $url)->toString();
+  $icon = '<span class="config-icon"></span>';
+  $link_with_icon = $icon . ' ' . $link;
+
+  // Add the icon and link to the toolbar.
+  $items['event_management'] = [
+    '#type' => 'link',
+    '#title' => t('Event Management Settings'),
+    '#url' => $url,
+    '#attributes' => [
+      'class' => ['toolbar-icon', 'config-icon'],
+      'title' => t('Event Management Settings'),
+    ],
+    '#markup' => $link_with_icon,
+  ];
+
+  return $items;
+}
+
+
+/**
+ * Implements hook_entity_form_display_alter().
+ */
+function event_management_entity_form_display_alter(array &$form_display, \Drupal\Core\Entity\EntityInterface $entity, $form_mode) {
+  // Check if the entity type is 'event'.
+  if ($entity->getEntityTypeId() === 'event') {
+    // Alter the form display for the 'add' form mode.
+    if ($form_mode === 'default') {
+      $form_display->setComponent('title', [
+        'type' => 'textfield',
+        'label' => 'Title',
+      ]);
+      $form_display->setComponent('image', [
+        'type' => 'managed_file',
+        'label' => 'Image',
+        'settings' => [
+          'upload_location' => 'public://events/',
+        ],
+      ]);
+      $form_display->setComponent('description', [
+        'type' => 'textarea',
+        'label' => 'Description',
+      ]);
+      $form_display->setComponent('start_time', [
+        'type' => 'datetime',
+        'label' => 'Start Time',
+      ]);
+      $form_display->setComponent('end_time', [
+        'type' => 'datetime',
+        'label' => 'End Time',
+      ]);
+      $form_display->setComponent('category', [
+        'type' => 'textfield',
+        'label' => 'Category',
+      ]);
+      $form_display->setComponent('published', [
+        'type' => 'checkbox',
+        'label' => 'Published',
+      ]);
+    }
+    // You can add more conditions for other form modes like 'edit' or 'delete' here.
+  }
+}
+
+
+/**
+ * Custom validation handler.
+ */
+function event_management_custom_validation($form, FormStateInterface $form_state) {
+  // Custom validation logic here.
+}
+
+function event_management_menu() {
+  $items = array();
+
+  $items['/custom-404'] = array(
+    'title' => 'Custom 404 Error Page',
+    'page callback' => 'event_management_custom_404',
+    'access callback' => TRUE,
+  );
+
+  $items['/custom-403'] = array(
+    'title' => 'Custom 403 Error Page',
+    'page callback' => 'event_management_custom_403',
+    'access callback' => TRUE,
+  );
+
+  return $items;
+}
+/**
+ * Custom 404 page callback.
+ */
+function event_management_custom_404() {
+  return '<h1>Custom 404 Error Page</h1><p>Sorry, the page you are looking for could not be found.</p>';
+}
+
+/**
+ * Custom 403 page callback.
+ */
+function event_management_custom_403() {
+  return '<h1>Custom 403 Error Page</h1><p>You do not have permission to access this page.</p>';
+}

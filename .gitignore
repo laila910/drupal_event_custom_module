@@ -1,0 +1,20 @@
+# Ignore Drupal core files and directories.
+web/core/
+web/libraries/
+web/vendor/
+web/sites/default/files/
+web/sites/default/settings.php
+vendor/
+web/profiles/
+web/themes/
+
+# Ignore local development files.
+*.log
+*.sql
+*.sqlite
+*.cache
+
+# Ignore other files.
+*.DS_Store
+*.idea
+*.vscode

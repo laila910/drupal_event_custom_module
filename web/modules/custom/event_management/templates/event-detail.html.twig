@@ -1,0 +1,10 @@
+<h1>{{ event.title }}</h1>
+<div>{{ event.start_time }} - {{ event.end_time }}</div>
+<div>{{ event.description }}</div>
+<div>
+  {% if event.image %}
+    <img src="{{ file_url(event.image) }}" alt="{{ event.title }}" />
+  {% endif %}
+</div>
+<div>{{ 'Category'|t }}: {{ event.category }}</div>
+<div>{{ 'Published'|t }}: {{ event.published }}</div>

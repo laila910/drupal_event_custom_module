@@ -1,0 +1,46 @@
+module_name:
+  type: module
+  label: 'Event Management'
+
+event_management.event_create:
+  type: config_entity
+  label: 'Event'
+  mapping:
+    id:
+      type: string
+      label: 'ID'
+    title:
+      type: string
+      label: 'Title'
+    description:
+      type: text
+      label: 'Description'
+    start_time:
+      type: datetime
+      label: 'Start Time'
+    end_time:
+      type: datetime
+      label: 'End Time'
+    category:
+      type: string
+      label: 'Category'
+    published:
+      type: boolean
+      label: 'Published'
+    image: 
+      type: image
+      label: 'Image'
+
+event_management.settings:
+  type: config_object
+  label: 'Event Management Settings'
+  mapping:
+    show_past_events:
+      type: boolean
+      label: 'Show past events'
+    events_per_page:
+      type: integer
+      label: 'Number of events to list per page'
+    log_changes:
+      type: boolean
+      label: 'Log configuration changes'

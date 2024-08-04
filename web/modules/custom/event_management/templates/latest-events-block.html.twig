@@ -1,0 +1,8 @@
+<h2>{{ 'Latest Events'|t }}</h2>
+<ul>
+  {% for event in events %}
+    <li>
+      <a href="{{ path('event_management.event_view', {'event': event.id}) }}">{{ event.title }}</a>
+    </li>
+  {% endfor %}
+</ul>

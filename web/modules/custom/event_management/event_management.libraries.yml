@@ -1,0 +1,7 @@
+event_management: # name of the library
+  css: # define the paths to your CSS and JavaScript files, respectively.
+    theme:
+      css/event_management.css: {}
+# js: # not used here :)
+#    js/event_management.js: {}
+
