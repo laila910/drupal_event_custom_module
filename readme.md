@@ -264,7 +264,7 @@
           ............. solved as: ![Successfully create event and event_management_log](readmeImages/image6.png "Module Event Management enabled and two tables event and event_management_log tables has been created successfully when install module from extend")
           ............. solved as: ![successfully get Configuration Page by route as shown](readmeImages/image7.png "Module Event Management Configuration Page Successfully Rendered")
           ............. solved as: ![configured configraration as in this image](readmeImages/image8.png "Module Event Management Configuration Page configured as here") ...........
-          
+
    9. [x] after save configraration Setting in Page get an error as blow: 
    The website encountered an unexpected error. Please try again later.
 
@@ -346,6 +346,7 @@ RuntimeException: Controller "Drupal\event_management\Controller\EventController
 
 ## end check implement
 #  It's a good practice to add project to version control (e.g., Git) and ignore the vendor and web/core directories.
+
 
 ## install the proper steps: 
 
