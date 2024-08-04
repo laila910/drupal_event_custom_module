@@ -344,7 +344,6 @@ RuntimeException: Controller "Drupal\event_management\Controller\EventController
   6. [x] Latest events block displays correct data.
   7. [x] Logs are being created in event_management_log table when configuration changes are made.
 
-## end check implement
 
 ## It's a good practice to add project to version control (e.g., Git) and ignore the vendor and web/core directories.
 
