@@ -278,7 +278,7 @@ Drupal\Core\Database\IntegrityConstraintViolationException: SQLSTATE[HY000]: Gen
       Error: Call to a member function getEntityTypeId() on null in Drupal\Core\Entity\EntityForm->getBaseFormId() (line 68 of 
          core\lib\Drupal\Core\Entity\EntityForm.php).
    13. [x] successfully get the event List as in Image ![Event List](readmeImages/image10.png "Event List Successfully rendered as shown")
-   14. [] when try to create event by `` i get this error as below:
+   14. [x] when try to create event, i get this error as below:
      The website encountered an unexpected error. Please try again later.
 
 RuntimeException: Controller "Drupal\event_management\Controller\EventController::viewEvent()" requires that you provide a value for the "$event_id" argument. Either the argument is nullable and no null value has been provided, no default value has been provided or because there is a non optional argument after this one. in Symfony\Component\HttpKernel\Controller\ArgumentResolver->getArguments() (line 81 of C:\wamp64\www\drupal_event\vendor\symfony\http-kernel\Controller\ArgumentResolver.php).
@@ -331,11 +331,11 @@ RuntimeException: Controller "Drupal\event_management\Controller\EventController
   # Checklist: 
      * [x] Module is enabled without errors.
      * [x] Database tables are created and contain the expected schema.
-     * [] Configuration form loads and saves settings.
-     * [] Events can be created, read, updated, and deleted.
-     * [] Event listing and detail pages display correct information.
-     * [] Latest events block displays correct data.
-     * [] Logs are being created in event_management_log table when configuration changes are made.
+     * [x] Configuration form loads and saves settings.
+     * [x] Events can be created, read, updated, and deleted.
+     * [x] Event listing and detail pages display correct information.
+     * [x] Latest events block displays correct data.
+     * [x] Logs are being created in event_management_log table when configuration changes are made.
 
 ## end check implement
 #  It's a good practice to add project to version control (e.g., Git) and ignore the vendor and web/core directories.
