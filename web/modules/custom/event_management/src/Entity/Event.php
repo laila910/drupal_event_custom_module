@@ -8,12 +8,17 @@ use Drupal\Core\Field\BaseFieldDefinition;
 
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 
+
+
+use Drupal\Core\Entity\ContentEntityInterface;
+
 /**
+ * Defines the Event entity.
+ *
  * @ContentEntityType(
  *   id = "event",
  *   label = @Translation("Event"),
  *   handlers = {
- *     "storage" = "Drupal\event_management\EventStorage",
  *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
  *     "list_builder" = "Drupal\event_management\EventListBuilder",
  *     "form" = {

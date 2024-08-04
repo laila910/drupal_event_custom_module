@@ -57,8 +57,16 @@ class EventController extends ControllerBase {
   public function createEvent() {
     $entity = $this->entityTypeManager->getStorage('event')->create([]);
     $form = $this->entityTypeManager->getFormObject('event', 'add');
-    $form->setEntity($entity);
+
+    if (!$entity) {
+      throw new NotFoundHttpException();
+    }else{
+      $form->setEntity($entity);
+    }
+
     return $this->formBuilder()->getForm($form);
+
+
   }
  
 
@@ -229,7 +237,7 @@ class EventController extends ControllerBase {
 
     $form = $this->entityTypeManager->getFormObject('event', 'delete');
     $form->setEntity($event);
-    return $this->formBuilder()->getForm($form);
+    return $this->formBuilder()->getForm('Drupal\event_management\Form\EventDeleteForm', $event);
   }
 
   /**

@@ -22,15 +22,7 @@ function event_management_route_alter(array &$routes) {
   }
 }
 
-function event_management_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-  if ($form_id === 'event_form') {
-    // Example: Add a custom submit handler.
-    $form['#submit'][] = 'event_management_custom_submit_handler';
-    $form['#validate'][] = 'event_management_custom_validation';
 
-  }
-
-}
 
 /**
  * Custom submit handler for event form.
@@ -119,33 +111,16 @@ function event_management_custom_validation($form, FormStateInterface $form_stat
   // Custom validation logic here.
 }
 
-function event_management_menu() {
-  $items = array();
+function event_management_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if ($form_id == 'event_form') {
+    // Ensure entity is set correctly.
+    if (!isset($form['#entity'])) {
+      \Drupal::logger('event_management')->error('Entity not set in form.');
+    }
+     // Example: Add a custom submit handler.
+    // $form['#submit'][] = 'event_management_custom_submit_handler';
+    // $form['#validate'][] = 'event_management_custom_validation';
+  }
 
-  $items['/custom-404'] = array(
-    'title' => 'Custom 404 Error Page',
-    'page callback' => 'event_management_custom_404',
-    'access callback' => TRUE,
-  );
-
-  $items['/custom-403'] = array(
-    'title' => 'Custom 403 Error Page',
-    'page callback' => 'event_management_custom_403',
-    'access callback' => TRUE,
-  );
-
-  return $items;
-}
-/**
- * Custom 404 page callback.
- */
-function event_management_custom_404() {
-  return '<h1>Custom 404 Error Page</h1><p>Sorry, the page you are looking for could not be found.</p>';
 }
 
-/**
- * Custom 403 page callback.
- */
-function event_management_custom_403() {
-  return '<h1>Custom 403 Error Page</h1><p>You do not have permission to access this page.</p>';
-}

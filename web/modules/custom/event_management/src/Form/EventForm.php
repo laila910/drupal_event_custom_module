@@ -39,28 +39,30 @@ class EventForm extends ContentEntityForm {
         $container->get('entity_type.manager')
       );
     }
-  public function buildForm(array $form, FormStateInterface $form_state) {
-    \Drupal::logger('event_management')->debug('Entity: <pre>@entity</pre>', ['@entity' => print_r($this->entity, TRUE)]);
+    public function buildForm(array $form, FormStateInterface $form_state, $entity = NULL) {
+      // \Drupal::logger('event_management')->debug('Entity: <pre>@entity</pre>', ['@entity' => print_r($entity, TRUE)]);
+      if (!$entity) {
+        $this->messenger->addError($this->t('No entity available.'));
+        return [];
+      } else {
+        $this->setEntity($entity);
+      }
+      $event = $this->entity;
 
-    if (!$this->entity) {
-      \Drupal::messenger()->addError($this->t('No entity available.'));
-      return [];
-    }
-    $event = $this->entity;
-
+   
     $form = parent::buildForm($form, $form_state);
 
     $form['title'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Title'),
-      '#default_value' => $event->get('title'),
+      '#default_value' => $event->get('title')->value,
       '#required' => TRUE,
     ];
 
     $form['image'] = [
       '#type' => 'managed_file',
       '#title' => $this->t('Image'),
-      '#default_value' => $event->get('image'),
+      '#default_value' => $event->get('image')->value,
       '#upload_location' => 'public://events/',
       '#default_value' => $event->get('image'),
       '#required' => FALSE,
@@ -69,20 +71,20 @@ class EventForm extends ContentEntityForm {
     $form['description'] = [
       '#type' => 'textarea',
       '#title' => $this->t('Description'),
-      '#default_value' => $event->get('description'),
+      '#default_value' => $event->get('description')->value,
     ];
 
     $form['start_time'] = [
       '#type' => 'datetime',
       '#title' => $this->t('Start Time'),
-      '#default_value' => $event->get('start_time'),
+      '#default_value' => $event->get('start_time')->value,
       '#required' => TRUE,
     ];
 
     $form['end_time'] = [
       '#type' => 'datetime',
       '#title' => $this->t('End Time'),
-      '#default_value' => $event->get('end_time'),
+      '#default_value' => $event->get('end_time')->value,
       '#required' => TRUE,
       '#states' => [
         'visible' => [
@@ -94,13 +96,13 @@ class EventForm extends ContentEntityForm {
     $form['category'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Category'),
-      '#default_value' => $event->get('category'),
+      '#default_value' => $event->get('category')->value,
     ];
 
     $form['published'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Published'),
-      '#default_value' => $event->get('published'),
+      '#default_value' => $event->get('published')->value,
     ];
 
     return $form;

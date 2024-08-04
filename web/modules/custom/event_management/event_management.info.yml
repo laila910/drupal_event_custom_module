@@ -7,4 +7,3 @@ dependencies:
   - drupal:node
   - drupal:views
   - drupal:datetime
-  

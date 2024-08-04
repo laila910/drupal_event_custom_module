@@ -8,14 +8,8 @@ services:
     arguments: ['@messenger', '@event_dispatcher']
     tags:
       - { name: form }
-  event_management.event_storage:
-    class: Drupal\event_management\EventStorage
-    arguments: ['@database', '@entity_field.manager']
-    tags:
-      - { name: entity.storage, entity_type: event }
-      
-  event_management.error_controller:
-    class: Drupal\event_management\Controller\ErrorController
-    arguments: ['@service_container']
-    tags:
-      - { name: controller_service }
+  # event_management.event_storage:
+  #   class: Drupal\event_management\EventStorage
+  #   arguments: ['@database', '@entity_field.manager']
+  #   tags:
+  #     - { name: entity.storage, entity_type: event }

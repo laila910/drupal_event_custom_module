@@ -4,6 +4,103 @@
  * Install, update, and uninstall functions for the event_management module.
  */
 
+function event_management_schema() {
+  $schema['event_management_log'] = [
+    'description' => 'Logs changes to the event management configuration.',
+    'fields' => [
+      'id' => [
+        'description' => 'The unique identifier for each log entry.',
+        'type' => 'serial',
+        'not null' => TRUE,
+      ],
+      'timestamp' => [
+        'description' => 'The timestamp when the log entry was created.',
+        'type' => 'int',
+        'size' => 'big',
+        'not null' => TRUE,
+      ],
+      'operation' => [
+        'description' => 'The type of operation performed (e.g., "create", "update", "delete").',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+      'user' => [
+        'description' => 'The ID of the user who performed the operation.',
+        'type' => 'int',
+        'size' => 'big',
+        'not null' => FALSE,
+      ],
+      'details' => [
+        'description' => 'Additional details about the operation.',
+        'type' => 'text',
+        'not null' => FALSE,
+      ],
+    ],
+    'primary key' => ['id'],
+  ];
+
+  $schema['event'] = [
+    'description' => 'Stores event information.',
+    'fields' => [
+      'id' => [
+        'description' => 'The primary identifier for the event.',
+        'type' => 'serial',
+        'not null' => TRUE,
+      ],
+      'title' => [
+        'description' => 'The title of the event.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+      'image' => [
+        'description' => 'The image associated with the event.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+        'default' => NULL,
+      ],
+      'description' => [
+        'description' => 'The description of the event.',
+        'type' => 'text',
+        'not null' => FALSE,
+        'default' => NULL,
+      ],
+      'start_time' => [
+        'description' => 'The start time of the event.',
+        'type' => 'int',
+        'not null' => TRUE,
+      ],
+      'end_time' => [
+        'description' => 'The end time of the event.',
+        'type' => 'int',
+        'not null' => TRUE,
+      ],
+      'category' => [
+        'description' => 'The category of the event.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+        'default' => NULL,
+      ],
+      'published' => [
+        'description' => 'Whether the event is published.',
+        'type' => 'int',
+        'size' => 'tiny',
+        'default' => 1,
+      ],
+    ],
+    'primary key' => ['id'],
+    'indexes' => [
+      'title' => ['title'],
+    ],
+    'foreign keys' => [],
+  ];
+
+
+  return $schema;
+}
 /**
  * Implements hook_install().
  */
@@ -21,84 +118,95 @@ function event_management_install() {
     'description' => 'Logs changes to the event management configuration.',
     'fields' => [
       'id' => [
+        'description' => 'The unique identifier for each log entry.',
         'type' => 'serial',
         'not null' => TRUE,
-        'description' => 'The unique identifier for each log entry.',
       ],
       'timestamp' => [
+        'description' => 'The timestamp when the log entry was created.',
         'type' => 'int',
         'size' => 'big',
         'not null' => TRUE,
-        'description' => 'The timestamp when the log entry was created.',
       ],
       'operation' => [
+        'description' => 'The type of operation performed (e.g., "create", "update", "delete").',
         'type' => 'varchar',
         'length' => 255,
         'not null' => TRUE,
-        'description' => 'The type of operation performed (e.g., "create", "update", "delete").',
       ],
       'user' => [
+        'description' => 'The ID of the user who performed the operation.',
         'type' => 'int',
         'size' => 'big',
         'not null' => FALSE,
-        'description' => 'The ID of the user who performed the operation.',
       ],
       'details' => [
-        'type' => 'text',
         'description' => 'Additional details about the operation.',
+        'type' => 'text',
+        'not null' => FALSE,
       ],
     ],
     'primary key' => ['id'],
   ];
-  $schema['event'] = array(
-     'description' => 'Stores event information.',
-      'fields' => array(
-      'id' => array(
+
+  $schema['event'] = [
+    'description' => 'Stores event information.',
+    'fields' => [
+      'id' => [
         'description' => 'The primary identifier for the event.',
         'type' => 'serial',
         'not null' => TRUE,
-      ),
-      'title' => array(
+      ],
+      'title' => [
         'description' => 'The title of the event.',
         'type' => 'varchar',
         'length' => 255,
         'not null' => TRUE,
-      ),
-      'image' => array(
+      ],
+      'image' => [
         'description' => 'The image associated with the event.',
         'type' => 'varchar',
         'length' => 255,
-      ),
-      'description' => array(
+        'not null' => FALSE,
+        'default' => NULL,
+      ],
+      'description' => [
         'description' => 'The description of the event.',
         'type' => 'text',
         'not null' => FALSE,
-      ),
-      'start_time' => array(
+        'default' => NULL,
+      ],
+      'start_time' => [
         'description' => 'The start time of the event.',
-        'type' => 'datetime',
+        'type' => 'int',
         'not null' => TRUE,
-      ),
-      'end_time' => array(
+      ],
+      'end_time' => [
         'description' => 'The end time of the event.',
-        'type' => 'datetime',
+        'type' => 'int',
         'not null' => TRUE,
-      ),
-      'category' => array(
+      ],
+      'category' => [
         'description' => 'The category of the event.',
         'type' => 'varchar',
         'length' => 255,
         'not null' => FALSE,
-      ),
-      'published' => array(
+        'default' => NULL,
+      ],
+      'published' => [
         'description' => 'Whether the event is published.',
         'type' => 'int',
         'size' => 'tiny',
         'default' => 1,
-      ),
-      ),
-      'primary key' => array('id'),
-  );
+      ],
+    ],
+    'primary key' => ['id'],
+    'indexes' => [
+      'title' => ['title'],
+    ],
+    'foreign keys' => [],
+  ];
+
 
   // Check if the tables already exists, and if so, drop it.
   if (\Drupal::database()->schema()->tableExists('event_management_log')) {
@@ -156,10 +264,11 @@ function event_management_update_8001() {
  *        'not null' => TRUE,
  *      ],
  *      'timestamp' => [
- *        'description' => 'The timestamp of the log entry.',
- *        'type' => 'int',
- *        'not null' => TRUE,
- *      ],
+        'description' => 'The timestamp when the log entry was created.',
+        'type' => 'int',
+        'size' => 'big',
+        'not null' => TRUE,
+      ],
  *    ],
  *    'primary key' => ['id'],
  * ]);

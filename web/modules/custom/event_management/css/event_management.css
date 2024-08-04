@@ -1,34 +1,33 @@
 .help-link {
-    float: right;
-    margin-top: -30px;
-    margin-right: 10px;
-  }
-  
-  .help-link a {
-    color: #0074bd;
-    text-decoration: none;
-  }
-  
-  .help-link a:hover {
-    text-decoration: underline;
-  }
-  
-  .permission-icon {
-    background-image: url('../images/permission-icon.png');
-    width: 16px;
-    height: 16px;
-    display: inline-block;
-    background-size: contain;
-    background-repeat: no-repeat;
-  }
+  float: right;
+  margin-top: -30px;
+  margin-right: 10px;
+}
 
-  .config-icon {
-    background-image: url('../images/config-icon.png');
-    width: 16px;
-    height: 16px;
-    display: inline-block;
-    background-size: contain;
-    background-repeat: no-repeat;
-    margin-right: 5px;
-  }
-  
+.help-link a {
+  color: #0074bd;
+  text-decoration: none;
+}
+
+.help-link a:hover {
+  text-decoration: underline;
+}
+
+.permission-icon {
+  background-image: url('../images/permission-icon.png');
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.config-icon {
+  background-image: url('../images/config-icon.png');
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-right: 5px;
+}
