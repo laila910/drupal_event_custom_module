@@ -1,4 +1,4 @@
-version: '3.7'
+version: '3.8'
 
 services:
   drupal:
@@ -13,10 +13,10 @@ services:
   db:
     image: mysql:8.0
     environment:
-      MYSQL_DATABASE: drupal
-      MYSQL_USER: drupal
-      MYSQL_PASSWORD: secret
-      MYSQL_ROOT_PASSWORD: rootsecret
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: drupal_db
+      MYSQL_USER: drupal_user
+      MYSQL_PASSWORD: drupal_password
     volumes:
       - db_data:/var/lib/mysql
 
