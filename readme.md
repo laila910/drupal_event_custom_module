@@ -347,7 +347,10 @@ RuntimeException: Controller "Drupal\event_management\Controller\EventController
 
 ## It's a good practice to add project to version control (e.g., Git) and ignore the vendor and web/core directories.
 
-
+## add project to Docker and docker-compose to share
+  1. docker run successfully as [docker decompose successfully](readmeImages/docker-compose-build-successfully.png)
+  2. website hosted successfully [hosted successfully](readmeImages/drupal-event-website-working-successfuly.png) & [here from docker descktop](readmeImages/docker-run-successfuly.png) :) 
+  3. Now, anyone can clone your repository from GitHub and run the project locally using Docker by executing docker-compose up --build. :)
 ## Install the proper steps: 
 
 
